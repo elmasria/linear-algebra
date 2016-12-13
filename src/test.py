@@ -38,17 +38,40 @@ v = Vector([1.996, 3.108, -4.554])
 # dot Product
 v = Vector([7.887, 4.138])
 w = Vector([-8.802, 6.776])
-print v.dot_product(w)
+#print v.dot_product(w)
 
 v = Vector([-5.955, -4.904, -1.874])
 w = Vector([-4.496, -8.755, 7.103])
-print v.dot_product(w)
+#print v.dot_product(w)
 
 # Angle
 v = Vector([3.183, -7.627])
 w = Vector([-2.668, 5.319])
-print v.calculate_angle(w)
+#print v.calculate_angle(w)
 
 v = Vector([7.35, 0.221, 5.188])
 w = Vector([2.751, 8.259, 3.985])
-print v.calculate_angle(w, True)
+#print v.calculate_angle(w, True)
+
+# Parallel or Orthogonal
+v = Vector([-7.579, -7.88])
+w = Vector([22.737, 23.64])
+print v.check_orthogonal_vectors(w)
+print v.check_parallel_vectors(w)
+
+v = Vector([-2.029, 9.97, 4.172])
+w = Vector([-9.231, -6.639, -7.245])
+print v.check_orthogonal_vectors(w)
+print v.check_parallel_vectors(w)
+
+
+v = Vector([-2.328, -7.284, -1.214])
+w = Vector([-1.821, 1.072, -2.94])
+print v.check_orthogonal_vectors(w)
+print v.check_parallel_vectors(w)
+
+
+v = Vector([2.118, 4.827])
+w = Vector([0, 0])
+print v.check_orthogonal_vectors(w)
+print v.check_parallel_vectors(w)

@@ -66,6 +66,17 @@ class Vector(object):
             else:
                 return theta
 
-        except ZeroDivisionError:
+        except:
             raise Exception('Cannot normalize the zero vector')
 
+    def check_orthogonal_vectors(self, v, tolerance=1e-10):
+        return abs(self.dot_product(v)) < tolerance
+
+    def check_parallel_vectors(self, v):
+        return (self.is_zero() or
+                v.is_zero() or
+                self.calculate_angle(v, True) == 0 or
+                self.calculate_angle(v, True) == 180)
+
+    def is_zero(self, tolerance=1e-10):
+        return self.get_magnitude() < tolerance
