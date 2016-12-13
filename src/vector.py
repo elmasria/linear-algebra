@@ -8,6 +8,7 @@ class Vector(object):
     CANNOT_NORMALIZE_ZERO_VECTOR_MSG = "Cannot normalize the zero vector"
     NO_UNIQUE_PARALLEL_COMPONENT_MSG = "No Parallel Component"
     NO_UNIQUE_ORTHOGONAL_COMPONENT_MSG = "No Orthogonal Component"
+    ONLY_DEFINED_IN_TWO_THREE_DIMS_MSG = "Only defined in 2 or 3 dimensions"
 
     def __init__(self, coordinates):
         try:
@@ -113,4 +114,34 @@ class Vector(object):
                 raise e
 
 
+    def cross_product(self, v):
+        try:
+            x_1, y_1, z_1 = self.coordinates
+            x_2, y_2, z_2 = v.coordinates
 
+            x = y_1*z_2 - y_2*z_1
+            y = -(x_1*z_2 - x_2*z_1)
+            z = x_1*y_2 - x_2*y_1
+
+            cross_vector = Vector([x, y, z])
+            return cross_vector
+        except ValueError as e:
+            msg = str(e)
+            if msg == 'need more than 2 values to unpack':
+                self_embedded_in_R3 = Vector(self.coordinates + ('0',))
+                v_embeded_in_R3 = Vector(v.coordinates + ('0',))
+                return self_embedded_in_R3.cross_product(v_embeded_in_R3)
+            elif (msg == 'too many values to unpack' or
+                msg == 'need more than 1 value to unpack'):
+                raise Exception(self.ONLY_DEFINED_IN_TWO_THREE_DIMS_MSG)
+        else:
+            raise e
+
+
+    def parallelogram_area(self, v):
+        cross_vector = self.cross_product(v)
+        return cross_vector.get_magnitude()
+
+    def triangle_area(self, v):
+        cross_vector = self.cross_product(v)
+        return cross_vector.get_magnitude()* Decimal(0.5)
