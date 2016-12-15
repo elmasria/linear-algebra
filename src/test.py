@@ -1,4 +1,5 @@
 from vector import Vector
+from line import Line
 
 
 # Tester
@@ -56,25 +57,25 @@ w = Vector([2.751, 8.259, 3.985])
 # Parallel or Orthogonal
 v = Vector([-7.579, -7.88])
 w = Vector([22.737, 23.64])
-#print v.check_orthogonal_vectors(w)
-#print v.check_parallel_vectors(w)
+#print v.is_orthogonal_to(w)
+#print v.is_parallel_to(w)
 
 v = Vector([-2.029, 9.97, 4.172])
 w = Vector([-9.231, -6.639, -7.245])
-#print v.check_orthogonal_vectors(w)
-#print v.check_parallel_vectors(w)
+#print v.is_orthogonal_to(w)
+#print v.is_parallel_to(w)
 
 
 v = Vector([-2.328, -7.284, -1.214])
 w = Vector([-1.821, 1.072, -2.94])
-#print v.check_orthogonal_vectors(w)
-#print v.check_parallel_vectors(w)
+#print v.is_orthogonal_to(w)
+#print v.is_parallel_to(w)
 
 
 v = Vector([2.118, 4.827])
 w = Vector([0, 0])
-#print v.check_orthogonal_vectors(w)
-#print v.check_parallel_vectors(w)
+#print v.is_orthogonal_to(w)
+#print v.is_parallel_to(w)
 
 # Projection
 v = Vector([3.039, 1.879])
@@ -94,14 +95,27 @@ w = Vector([6.404, -9.144, 2.759, 8.718])
 # Cross Product
 v = Vector([8.462, 7.893, -8.187])
 w = Vector([6.984, -5.975, 4.778])
-print v.cross_product(w)
+#print v.cross_product(w)
 
 # parallelogram Area
 v = Vector([-8.987, -9.838, 5.031])
 w = Vector([-4.268, -1.861, -8.866])
-print v.parallelogram_area(w)
+#print v.parallelogram_area(w)
 
 # triangle Area
 v = Vector([1.5, 9.547, 3.691])
 w = Vector([-6.007, 0.124, 5.772])
-print v.triangle_area(w)
+#print v.triangle_area(w)
+
+
+ell1 = Line(normal_vector = Vector(['4.046', '2.836']), constant_term='1.21')
+ell2 = Line(normal_vector = Vector(['10.115', '7.09']), constant_term='3.025')
+print 'intersection 1:', ell1.intersection_with(ell2)
+
+ell1 = Line(normal_vector = Vector(['7.204', '3.182']), constant_term='8.68')
+ell2 = Line(normal_vector = Vector(['8.172', '4.114']), constant_term='9.883')
+print 'intersection 2:', ell1.intersection_with(ell2)
+
+ell1 = Line(normal_vector = Vector(['1.182', '5.562']), constant_term='6.744')
+ell2 = Line(normal_vector = Vector(['1.773', '8.343']), constant_term='9.525')
+print 'intersection 3:', ell1.intersection_with(ell2)
